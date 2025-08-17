@@ -55,7 +55,7 @@ export async function authenticateUser(email: string, password: string) {
     const result = await query(
         `SELECT id, first_name, last_name, email, password_hash
      FROM users 
-     WHERE email = $1 AND account_status = "active"`,
+     WHERE email = $1 AND account_status = 'active'`,
         [email],
     )
 

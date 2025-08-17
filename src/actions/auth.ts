@@ -67,9 +67,6 @@ export async function signup(formData: FormData) {
 
         await createSession(user.id)
 
-
-
-
     } catch (error) {
         console.error("Signup error:", error)
 
@@ -89,7 +86,7 @@ export async function signup(formData: FormData) {
 
         return { error: "Failed to create account" }
     }
-    redirect("/dashboard")
+    redirect("/admin")
 }
 
 export async function signin(formData: FormData) {
@@ -123,7 +120,7 @@ export async function signin(formData: FormData) {
     }
 
     if (user.id) {
-        redirect("/dashboard")
+        redirect("/admin")
     } else {
         redirect("/")
     }

@@ -20,7 +20,7 @@ export default async function DashboardPage({ searchParams }: DashboardPageProps
   }
 
   return (
-    <AppPageLayout>
+    <AppPageLayout user={user}>
       <Dashboard user={user} />
     </AppPageLayout>
   );

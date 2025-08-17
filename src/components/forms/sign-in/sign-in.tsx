@@ -1,36 +1,38 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { Button } from "@/components/ui/button/button"
-import { Input } from "@/components/ui/input/input"
-import { Label } from "@/components/ui/label/label"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card/card"
-import { Alert, AlertDescription } from "@/components/ui/alert/alert"
-import { signin } from "@/actions/auth"
-import Link from "next/link"
+import { useState } from "react";
+import { Button } from "@/components/ui/button/button";
+import { Input } from "@/components/ui/input/input";
+import { Label } from "@/components/ui/label/label";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card/card";
+import { Alert, AlertDescription } from "@/components/ui/alert/alert";
+import { signin } from "@/actions/auth";
+import Link from "next/link";
+import Image from "next/image";
 
 export function SigninForm() {
-    const [error, setError] = useState<string | null>(null)
-    const [isLoading, setIsLoading] = useState(false)
+    const [error, setError] = useState<string | null>(null);
+    const [isLoading, setIsLoading] = useState(false);
 
     async function handleSubmit(formData: FormData) {
-        setIsLoading(true)
-        setError(null)
+        setIsLoading(true);
+        setError(null);
 
-        const result = await signin(formData)
+        const result = await signin(formData);
 
         if (result?.error) {
-            setError(result.error)
-            setIsLoading(false)
+            setError(result.error);
+            setIsLoading(false);
         }
     }
 
     return (
-        <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-green-50 to-blue-50 p-4">
+        <div className="h-screen flex items-center justify-center p-4">
             <Card className="w-full max-w-md">
                 <CardHeader className="text-center">
-                    <CardTitle className="text-2xl font-bold">Welcome Back</CardTitle>
-                    <CardDescription>Sign in to your Football Manager account</CardDescription>
+                    <Image src={"/forkflow-logo.png"} height={80} width={80} alt={"Forkflow logo"} style={{ alignSelf: 'center' }} />
+                    <CardTitle className="text-2xl font-bold text-ff-dark-blue text-title-font">Welcome back</CardTitle>
+                    <CardDescription>Sign in to access your account</CardDescription>
                 </CardHeader>
                 <CardContent>
                     <form action={handleSubmit} className="space-y-4">
@@ -40,7 +42,6 @@ export function SigninForm() {
                                 id="email"
                                 name="email"
                                 type="email"
-                                placeholder="john@example.com"
                                 required
                                 disabled={isLoading}
                             />
@@ -52,7 +53,6 @@ export function SigninForm() {
                                 id="password"
                                 name="password"
                                 type="password"
-                                placeholder="••••••••"
                                 required
                                 disabled={isLoading}
                             />
@@ -65,13 +65,13 @@ export function SigninForm() {
                         )}
 
                         <Button type="submit" className="w-full" disabled={isLoading}>
-                            {isLoading ? "Signing In..." : "Sign In"}
+                            {isLoading ? "Signing in..." : "Sign in"}
                         </Button>
                     </form>
 
                     <div className="mt-4 text-center text-sm">
                         {"Don't have an account? "}
-                        <Link href="/signup" className="text-blue-600 hover:underline">
+                        <Link href="/" className="text-blue-600 hover:underline">
                             Sign up
                         </Link>
                     </div>

@@ -121,6 +121,8 @@ export function SignupForm() {
             return;
         }
 
+        console.log('formData: ', formData)
+
         const result = await signup(formData);
 
         if (result?.error) {
