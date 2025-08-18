@@ -1,7 +1,4 @@
-import { Pool } from "pg"
-// import bcryptjs from "bcryptjs"
-// import { cookies } from "next/headers"
-// import { redirect } from "next/navigation"
+import { Pool } from "pg";
 
 const pool = new Pool({
     connectionString: process.env.DATABASE_URL,

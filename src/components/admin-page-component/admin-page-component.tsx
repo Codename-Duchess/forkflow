@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useView } from "@/context/ViewContext";
 import Bookings from "../admin-feature-panels/bookings";
 import Restaurants from "../admin-feature-panels/restaurants";
+import Staff from "../admin-feature-panels/staff";
 
 interface UserCompact {
     id: string;
@@ -38,7 +39,7 @@ useEffect(() => {
             {selectedView === 'bookings' && (
                 <div className="p-4">
                     <h1 className="text-lg font-semibold">Bookings</h1>
-                    <Bookings />
+                    <Bookings restaurantId={1} />
                 </div>
             )}
             {selectedView === 'restaurants' && (
@@ -50,7 +51,7 @@ useEffect(() => {
             {selectedView === 'staff' && (
                 <div className="p-4">
                     <h1 className="text-lg font-semibold">Staff</h1>
-                    <p>Welcome to the admin staff page, {user.firstName}</p>
+                    <Staff restaurantId={1} />
                 </div>
             )}
             {selectedView === 'reports' && (

@@ -56,7 +56,8 @@ export async function signup(formData: FormData) {
             password_hash: "", // This will be set in the createUser function
             total_time: "0 minutes",
             last_updated: new Date().toISOString(),
-            invite_codes: []
+            invite_codes: [],
+            restaurants: []
         }
 
         // Create the user

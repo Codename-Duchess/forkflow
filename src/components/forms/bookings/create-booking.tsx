@@ -7,26 +7,28 @@ import { Label } from "@/components/ui/label/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card/card";
 import { Alert, AlertDescription } from "@/components/ui/alert/alert";
 import { z } from "zod";
-import { createRestaurant } from "@/actions/restaurants";
+import { createBooking } from "@/actions/bookings";
 
 // Validation schemas
-const restaurantNameSchema = z.string().min(1, "Restaurant name is required");
-const addressLine1Schema = z.string().min(1, "Address line 1 is required");
-const addressLine2Schema = z.string().optional();
-const citySchema = z.string().min(1, "City is required");
-const countySchema = z.string().optional();
-const postcodeSchema = z.string().regex(/^[A-Z]{1,2}[0-9]{1,2}[A-Z]?\s?[0-9][A-Z]{2}$/i, "Please enter a valid UK postcode");
+const bookingDateSchema = z.string().min(1, "Booking date is required");
+const bookingTimeSchema = z.string().min(1, "Booking time is required");
+const partySizeSchema = z.string().min(1, "Party size is required");
+const specialRequestsSchema = z.string().optional();
+const bookingNameSchema = z.string().min(1, "Booking name is required");
+const contactEmailSchema = z.string().min(1, "Contact email address is required");
+const contactPhoneSchema = z.string().optional();
 
 interface FieldErrors {
-    restaurantName?: string;
-    addressLine1?: string;
-    addressLine2?: string;
-    city?: string;
-    county?: string;
-    postcode?: string;
+    bookingDate?: string;
+    bookingTime?: string;
+    partySize?: string;
+    specialRequests?: string;
+    bookingName?: string;
+    contactEmail?: string;
+    contactPhone?: string;
 }
 
-export function CreateRestaurantForm() {
+export function CreateBookingForm() {
     const [error, setError] = useState<string | null>(null);
     const [success, setSuccess] = useState<string | null>(null);
     const [isLoading, setIsLoading] = useState(false);
@@ -36,23 +38,26 @@ export function CreateRestaurantForm() {
     const validateField = (name: string, value: string) => {
         let schema;
         switch (name) {
-            case 'restaurantName':
-                schema = restaurantNameSchema;
+            case 'bookingDate':
+                schema = bookingDateSchema;
                 break;
-            case 'addressLine1':
-                schema = addressLine1Schema;
+            case 'bookingTime':
+                schema = bookingTimeSchema;
                 break;
-            case 'addressLine2':
-                schema = addressLine2Schema;
+            case 'partySize':
+                schema = partySizeSchema;
                 break;
-            case 'city':
-                schema = citySchema;
+            case 'specialRequests':
+                schema = specialRequestsSchema;
                 break;
-            case 'county':
-                schema = countySchema;
+            case 'bookingName':
+                schema = bookingNameSchema;
                 break;
-            case 'postcode':
-                schema = postcodeSchema;
+            case 'contactEmail':
+                schema = contactEmailSchema;
+                break;
+            case 'contactPhone':
+                schema = contactPhoneSchema;
                 break;
             default:
                 return null;
@@ -107,13 +112,15 @@ export function CreateRestaurantForm() {
         setError(null);
         setSuccess(null);
 
+
         // Validate all fields before submission
         const newFieldErrors: FieldErrors = {};
-        const fields = ['restaurantName', 'addressLine1', 'addressLine2', 'city', 'county', 'postcode'];
+        const fields = ['bookingDate', 'bookingTime', 'partySize', 'specialRequests', 'bookingName', 'contactEmail', 'contactPhone'];
 
         fields.forEach(field => {
             const value = formData.get(field) as string;
             const error = validateField(field, value);
+            console.log('Errorrr: ', error)
             if (error) {
                 newFieldErrors[field as keyof FieldErrors] = error;
             }
@@ -130,7 +137,7 @@ export function CreateRestaurantForm() {
 
         console.log('formData: ', formData);
 
-        const result = await createRestaurant(formData);
+        const result = await createBooking(formData);
 
         console.log("Made it to here and got a result: ", result);
 
@@ -144,104 +151,121 @@ export function CreateRestaurantForm() {
     return (
         <Card className="w-full max-w-2xl">
             <CardHeader>
-                <CardTitle className="text-2xl font-bold">Create new restaurant</CardTitle>
-                <CardDescription>Add a new restaurant to your account</CardDescription>
+                <CardTitle className="text-2xl font-bold">Create new booking</CardTitle>
+                <CardDescription>Add a new booking</CardDescription>
             </CardHeader>
             <CardContent>
-                <form action={handleSubmit} id="restaurant-form" className="space-y-4">
+                <form action={handleSubmit} id="booking-form" className="space-y-4">
                     <div className="space-y-2">
-                        <Label htmlFor="restaurantName">Restaurant name</Label>
+                        <Label htmlFor="bookingDate">Booking date</Label>
                         <Input
-                            id="restaurantName"
-                            name="restaurantName"
+                            id="bookingDate"
+                            name="bookingDate"
                             disabled={isLoading}
                             onChange={handleFieldChange}
                             onBlur={handleFieldBlur}
-                            className={getFieldClassName('restaurantName', '')}
+                            className={getFieldClassName('bookingDate', '')}
+                            type="date"
                         />
-                        {fieldErrors.restaurantName && (
-                            <p className="text-sm text-red-600 mt-1">{fieldErrors.restaurantName}</p>
+                        {fieldErrors.bookingDate && (
+                            <p className="text-sm text-red-600 mt-1">{fieldErrors.bookingDate}</p>
                         )}
                     </div>
 
                     <div className="space-y-4">
-                        <h3 className="text-lg font-medium">Address</h3>
-
                         <div className="space-y-2">
-                            <Label htmlFor="addressLine1">Address line 1</Label>
+                            <Label htmlFor="bookingTime">Booking time</Label>
                             <Input
-                                id="addressLine1"
-                                name="addressLine1"
+                                id="bookingTime"
+                                name="bookingTime"
                                 disabled={isLoading}
                                 onChange={handleFieldChange}
                                 onBlur={handleFieldBlur}
-                                className={getFieldClassName('addressLine1', '')}
+                                className={getFieldClassName('bookingTime', '')}
+                                type="time"
                             />
-                            {fieldErrors.addressLine1 && (
-                                <p className="text-sm text-red-600 mt-1">{fieldErrors.addressLine1}</p>
+                            {fieldErrors.bookingTime && (
+                                <p className="text-sm text-red-600 mt-1">{fieldErrors.bookingTime}</p>
                             )}
                         </div>
 
                         <div className="space-y-2">
-                            <Label htmlFor="addressLine2">Address line 2</Label>
+                            <Label htmlFor="partySize">Party size</Label>
                             <Input
-                                id="addressLine2"
-                                name="addressLine2"
+                                id="partySize"
+                                name="partySize"
                                 disabled={isLoading}
                                 onChange={handleFieldChange}
                                 onBlur={handleFieldBlur}
-                                className={getFieldClassName('addressLine2', '')}
+                                className={getFieldClassName('partySize', '')}
+                                type="number"
                             />
-                            {fieldErrors.addressLine2 && (
-                                <p className="text-sm text-red-600 mt-1">{fieldErrors.addressLine2}</p>
+                            {fieldErrors.partySize && (
+                                <p className="text-sm text-red-600 mt-1">{fieldErrors.partySize}</p>
                             )}
                         </div>
 
                         <div className="grid grid-cols-2 gap-4">
                             <div className="space-y-2">
-                                <Label htmlFor="city">City</Label>
+                                <Label htmlFor="specialRequests">Special requests</Label>
                                 <Input
-                                    id="city"
-                                    name="city"
+                                    id="specialRequests"
+                                    name="specialRequests"
                                     disabled={isLoading}
                                     onChange={handleFieldChange}
                                     onBlur={handleFieldBlur}
-                                    className={getFieldClassName('city', '')}
+                                    className={getFieldClassName('specialRequests', '')}
                                 />
-                                {fieldErrors.city && (
-                                    <p className="text-sm text-red-600 mt-1">{fieldErrors.city}</p>
+                                {fieldErrors.specialRequests && (
+                                    <p className="text-sm text-red-600 mt-1">{fieldErrors.specialRequests}</p>
                                 )}
                             </div>
 
                             <div className="space-y-2">
-                                <Label htmlFor="county">County</Label>
+                                <Label htmlFor="bookingName">Booking name</Label>
                                 <Input
-                                    id="county"
-                                    name="county"
+                                    id="bookingName"
+                                    name="bookingName"
                                     disabled={isLoading}
                                     onChange={handleFieldChange}
                                     onBlur={handleFieldBlur}
-                                    className={getFieldClassName('county', '')}
+                                    className={getFieldClassName('bookingName', '')}
                                 />
-                                {fieldErrors.county && (
-                                    <p className="text-sm text-red-600 mt-1">{fieldErrors.county}</p>
+                                {fieldErrors.bookingName && (
+                                    <p className="text-sm text-red-600 mt-1">{fieldErrors.bookingName}</p>
                                 )}
                             </div>
                         </div>
 
                         <div className="space-y-2">
-                            <Label htmlFor="postcode">Postcode</Label>
+                            <Label htmlFor="contactEmail">Email address</Label>
                             <Input
-                                id="postcode"
-                                name="postcode"
+                                id="contactEmail"
+                                name="contactEmail"
                                 disabled={isLoading}
                                 onChange={handleFieldChange}
                                 onBlur={handleFieldBlur}
-                                className={getFieldClassName('postcode', '')}
-                                style={{ textTransform: 'uppercase' }}
+                                className={getFieldClassName('contactEmail', '')}
+                                type="email"
                             />
-                            {fieldErrors.postcode && (
-                                <p className="text-sm text-red-600 mt-1">{fieldErrors.postcode}</p>
+                            {fieldErrors.contactEmail && (
+                                <p className="text-sm text-red-600 mt-1">{fieldErrors.contactEmail}</p>
+                            )}
+                        </div>
+
+                        <div className="space-y-2">
+                            <Label htmlFor="contactPhone">Phone number</Label>
+                            <Input
+                                id="contactPhone"
+                                name="contactPhone"
+                                disabled={isLoading}
+                                onChange={handleFieldChange}
+                                onBlur={handleFieldBlur}
+                                className={getFieldClassName('contactPhone', '')}
+                                type="tel"
+                            />
+                            {fieldErrors.contactPhone && (
+                                <p className="text-sm text-red-600 mt-1">{fieldErrors.contactPhone}</p>
                             )}
                         </div>
                     </div>
@@ -260,7 +284,7 @@ export function CreateRestaurantForm() {
 
                     <div className="flex gap-4 pt-4">
                         <Button type="submit" disabled={isLoading} className="flex-1">
-                            {isLoading ? "Creating restaurant..." : "Create restaurant"}
+                            {isLoading ? "Creating booking..." : "Create booking"}
                         </Button>
                     </div>
                 </form>
