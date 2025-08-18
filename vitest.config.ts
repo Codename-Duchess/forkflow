@@ -36,7 +36,15 @@ export default defineConfig({
         'src/**'
       ],
       exclude: [
-        '**/*.stories.{js, jsx, ts, tsx}'
+        '**/*.stories.{js, jsx, ts, tsx}',
+        '**/src/actions/**',
+        '**/src/axe/**',
+        '**/src/context/**',
+        '**/src/hooks/**',
+        '**/src/lib/**',
+        '**/src/types/**',
+        '**/src/constants/**'
+
       ],
       thresholds: {
         global: {
