@@ -1,7 +1,8 @@
 'use client'
 
 import React, { useState, useEffect, useRef } from 'react';
-import { CheckCircle, Sparkles, Mail, Users, Zap } from 'lucide-react';
+import { CheckCircle, Mail, Users, Zap } from 'lucide-react';
+// import { CheckCircle, Sparkles, Mail, Users, Zap } from 'lucide-react';
 import Confetti from 'react-confetti';
 
 export default function BetaThankYouPage() {
@@ -56,8 +57,8 @@ export default function BetaThankYouPage() {
                     {/* Success message */}
                     <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-xl border border-emerald-100 mb-8 animate-fade-in-up animation-delay-600">
                         <p className="text-lg text-gray-600 leading-relaxed">
-                            🎉 You're all set! We're thrilled to have you as one of our early testers.
-                            Your feedback will help shape the future of our platform, and as a thank you you'll be eligible for discounted modules.
+                            🎉 You&apos;re all set! We&apos;re thrilled to have you as one of our early testers.
+                            Your feedback will help shape the future of our platform, and as a thank you you&apos;ll be eligible for discounted modules.
                         </p>
                     </div>
 
@@ -66,7 +67,7 @@ export default function BetaThankYouPage() {
                         <div className="bg-white/70 backdrop-blur-sm rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 animate-fade-in-up animation-delay-900">
                             <Mail className="w-8 h-8 text-emerald-500 mx-auto mb-4" />
                             <h3 className="font-semibold text-gray-800 mb-2">Check your email</h3>
-                            <p className="text-sm text-gray-600">We've sent you some information and will email you again once the Beta version is ready for use</p>
+                            <p className="text-sm text-gray-600">We&apos;ve sent you some information and will email you again once the Beta version is ready for use</p>
                         </div>
 
                         <div className="bg-white/70 backdrop-blur-sm rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 animate-fade-in-up animation-delay-1200">

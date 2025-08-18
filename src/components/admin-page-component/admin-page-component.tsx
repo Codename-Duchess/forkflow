@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useView } from "@/context/ViewContext";
 import Bookings from "../admin-feature-panels/bookings";
 import Restaurants from "../admin-feature-panels/restaurants";

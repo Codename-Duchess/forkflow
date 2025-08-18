@@ -7,13 +7,13 @@ import { useView } from "@/context/ViewContext";
 
 interface AppPageLayoutProps {
     children: React.ReactNode;
-    user: any;
+    user: any; // eslint-disable-line @typescript-eslint/no-explicit-any
 }
 
 const AppPageLayout = ({ children, user }: AppPageLayoutProps) => {
 
     const [sidebarOpen, setSidebarOpen] = useState(false);
-    const { selectedView, setSelectedView } = useView();
+    const { selectedView, setSelectedView } = useView(); // eslint-disable-line @typescript-eslint/no-unused-vars
 
     const handleViewChange = (view: string) => {
         console.log(`Changing view to: ${view}`);

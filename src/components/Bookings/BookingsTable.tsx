@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Edit, Trash2, Phone, Mail, Calendar, Clock, Users } from 'lucide-react';
-import { getCurrentUser } from '@/lib/auth';
 import { Booking } from '@/types/booking';
 
 interface BookingsTableProps {

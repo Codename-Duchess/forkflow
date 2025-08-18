@@ -1,7 +1,7 @@
 "use server"
 
-import { getCurrentUser } from "@/lib/auth";
-import { createNewStaffMember, editSelectedStaffMember, deleteSelectedStaffMember } from "@/lib/staff";
+import { createNewStaffMember } from "@/lib/staff";
+// import { createNewStaffMember, editSelectedStaffMember, deleteSelectedStaffMember } from "@/lib/staff";
 import { z } from 'zod';
 
 const createStaffMemberSchema = z.object({
@@ -27,8 +27,6 @@ export async function createStaffMember(formData: FormData) {
         iceName: formData.get('iceName') as string,
         icePhone: formData.get('icePhone') as string
     };
-
-    const user = await getCurrentUser();
 
     try {
         const validatedData = createStaffMemberSchema.parse(rawData)

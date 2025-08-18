@@ -5,7 +5,7 @@ import { mockContacts } from '@/constants/mock-contacts';
 import { useEffect } from 'react';
 
 interface DashboardProps {
-    user: any
+    user: any // eslint-disable-line @typescript-eslint/no-explicit-any
 }
 
 const Dashboard = ({ user }: DashboardProps) => {
@@ -13,7 +13,7 @@ const Dashboard = ({ user }: DashboardProps) => {
 
     useEffect(() => {
         console.log("Dashboard component mounted with user:", user);
-    }, []);
+    }, [user]);
 
     return (
         <div aria-label="page-content">
@@ -23,11 +23,11 @@ const Dashboard = ({ user }: DashboardProps) => {
                     <div>
                         <h2 className="text-2xl font-bold text-gray-900">Dashboard</h2>
                         <p className="mt-1 text-sm text-gray-500">Welcome
-                            {user === false && <span> back</span>}, ! Here's what's happening today.</p>
+                            {user === false && <span> back</span>}, ! Here&apos;s what&apos;s happening today.</p>
                     </div>
                     <button className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-lg shadow-sm text-white bg-emerald-600 hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500 transition-colors">
                         <Plus size={16} className="mr-2" />
-                        Add Contact
+                        Add contact
                     </button>
                 </div>
             </div>

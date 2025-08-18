@@ -3,19 +3,19 @@ import { Pool } from 'pg';
 
 const pool = new Pool({ connectionString: process.env.DATABASE_URL });
 
-// GET all stagff for a restaurant
-async function getStaffForRestaurant(restaurantId: string) {
-    const client = await pool.connect();
-    try {
-        const result = await client.query(
-            'SELECT * FROM staff WHERE restaurant_id = $1 ORDER BY last_name DESC',
-            [restaurantId]
-        );
-        return result.rows;
-    } finally {
-        client.release();
-    }
-}
+// GET all staff for a restaurant
+// async function getStaffForRestaurant(restaurantId: string) {
+//     const client = await pool.connect();
+//     try {
+//         const result = await client.query(
+//             'SELECT * FROM staff WHERE restaurant_id = $1 ORDER BY last_name DESC',
+//             [restaurantId]
+//         );
+//         return result.rows;
+//     } finally {
+//         client.release();
+//     }
+// }
 
 // POST - Create new staff member
 export async function POST(request: NextRequest) {

@@ -6,7 +6,7 @@ export function useAxe() {
     useEffect(() => {
         if (process.env.NEXT_PUBLIC_NODE_ENV === 'development' && typeof window !== 'undefined') {
             import('@axe-core/react').then((axe) => {
-                axe.default(require('react'), require('react-dom'), 1000);
+                axe.default(require('react'), require('react-dom'), 1000); // eslint-disable-line @typescript-eslint/no-require-imports
             });
         }
     }, []);

@@ -10,9 +10,7 @@ interface DashboardPageProps {
 export default async function DashboardPage({ searchParams }: DashboardPageProps) {
 
   const user = await getCurrentUser();
-  const params = await searchParams
-  const newUser = params.newUser === 'true'
-  const userName = typeof params.name === 'string' ? params.name : undefined
+  const params = await searchParams; // eslint-disable-line @typescript-eslint/no-unused-vars
 
   if (!user) {
     // This shouldn't happen if requireAuth is used, but good fallback

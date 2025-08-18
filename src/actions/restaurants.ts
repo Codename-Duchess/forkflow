@@ -1,7 +1,8 @@
 "use server"
 
 import { getCurrentUser } from "@/lib/auth";
-import { createNewRestaurant, editSelectedRestaurant, deleteSelectedRestaurant } from "@/lib/restaurants"
+import { createNewRestaurant } from "@/lib/restaurants"
+// import { createNewRestaurant, editSelectedRestaurant, deleteSelectedRestaurant } from "@/lib/restaurants"
 import { z } from 'zod';
 
 const createRestaurantSchema = z.object({
