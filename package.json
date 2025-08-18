@@ -9,7 +9,12 @@
     "lint": "next lint",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "component-tests": "npx vitest --coverage"
+    "test-storybook": "test-storybook -- --coverage",
+    "test": "vitest run",
+    "test:coverage": "vitest run --coverage",
+    "test:watch": "vitest",
+    "test:ui": "vitest --ui",
+    "e2etest": "playwright test"
   },
   "dependencies": {
     "@axe-core/react": "^4.10.2",
