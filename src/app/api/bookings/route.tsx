@@ -94,12 +94,12 @@ export async function POST(request: NextRequest) {
             booking_date,
             booking_time,
             party_size,
-            special_requests || null,
+            special_requests,
             booking_status || 'pending',
             booking_name,
             contact_email,
-            contact_phone || null,
-            updated_by || 'system'
+            contact_phone,
+            updated_by || 0
         ];
 
         const client = await pool.connect();

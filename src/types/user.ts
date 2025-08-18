@@ -4,6 +4,7 @@ export interface User {
     last_name: string;
     email: string;
     date_created: string;
+    restaurants?: number[];
     user_sessions: number;
     average_session_length: string;
     last_login?: string;

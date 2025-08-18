@@ -1,13 +1,10 @@
-import { Pool } from "pg"
-// import bcryptjs from "bcryptjs"
-// import { cookies } from "next/headers"
-// import { redirect } from "next/navigation"
+import { Pool } from "pg";
 
 const pool = new Pool({
     connectionString: process.env.DATABASE_URL,
 });
 
-export async function query(text: string, params?: any[]) {
+export async function query(text: string, params?: any[]) { // eslint-disable-line @typescript-eslint/no-explicit-any
     const client = await pool.connect()
     try {
         const result = await client.query(text, params)

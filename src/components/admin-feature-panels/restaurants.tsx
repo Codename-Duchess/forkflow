@@ -1,6 +1,5 @@
 "use client";
 
-import { getCurrentUser } from "@/lib/auth";
 import { CreateRestaurantForm } from "../forms/create-restaurant/create-restaurant";
 import { useEffect, useState } from "react";
 import RestaurantsTable from "../Restaurants/RestaurantsTable";

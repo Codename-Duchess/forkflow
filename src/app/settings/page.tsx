@@ -1,6 +1,5 @@
 "use client"
 
-import { useState } from "react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card/card"
 import { Button } from "@/components/ui/button/button"
 import { Input } from "@/components/ui/input/input"
@@ -35,7 +34,6 @@ const teamMembers = [
 ]
 
 export default function Settings() {
-    const [currentPlan, setCurrentPlan] = useState("pro")
 
     return (
         <div className="space-y-6">

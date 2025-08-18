@@ -15,7 +15,6 @@ import Image from "next/image";
 const emailSchema = z.string().email("Please enter a valid email address");
 const passwordSchema = z.string().min(8, "Password must be at least 8 characters");
 const nameSchema = z.string().min(1, "This field is required");
-const companyNameSchema = z.string().min(1, "This field is required");
 const inviteCodeSchema = z.string().min(1, "Invite code is required");
 
 interface FieldErrors {

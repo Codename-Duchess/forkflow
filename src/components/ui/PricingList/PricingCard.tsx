@@ -1,10 +1,10 @@
-import { Check, Icon } from "lucide-react";
+import { Check } from "lucide-react";
 
 type Tier = {
     id: string;
     name: string;
     price: string;
-    icon: any;
+    icon: any; // eslint-disable-line @typescript-eslint/no-explicit-any
     features: string[];
 }
 

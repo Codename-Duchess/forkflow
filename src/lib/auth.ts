@@ -7,7 +7,7 @@ const pool = new Pool({
     connectionString: process.env.DATABASE_URL,
 })
 
-export async function query(text: string, params?: any[]) {
+export async function query(text: string, params?: any[]) { // eslint-disable-line @typescript-eslint/no-explicit-any
     const client = await pool.connect()
     try {
         const result = await client.query(text, params)
@@ -37,15 +37,16 @@ export async function createUser(userData: {
     password_hash: string
     total_time: string
     last_updated: string
-    invite_codes: string[]
+    invite_codes: string[],
+    restaurants: number[]
 }) {
     const hashedPassword = await hashPassword(userData.password)
 
     const result = await query(
-        `INSERT INTO users (first_name, last_name, company_name, email, password_hash, user_sessions, average_session_length, account_status, total_time, last_updated, invite_codes)
+        `INSERT INTO users (first_name, last_name, company_name, email, password_hash, user_sessions, average_session_length, account_status, total_time, last_updated, invite_codes, restaurants)
      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)
-     RETURNING id, first_name, last_name, company_name email, user_sessions, average_session_length, account_status, total_time, last_updated, invite_codes`,
-        [userData.first_name, userData.last_name, userData.company_name, userData.email, hashedPassword, userData.user_sessions, userData.average_session_length, userData.account_status, userData.total_time, userData.last_updated, userData.invite_codes],
+     RETURNING id, first_name, last_name, company_name email, user_sessions, average_session_length, account_status, total_time, last_updated, invite_codes, restaurants`,
+        [userData.first_name, userData.last_name, userData.company_name, userData.email, hashedPassword, userData.user_sessions, userData.average_session_length, userData.account_status, userData.total_time, userData.last_updated, userData.invite_codes, userData.restaurants],
     )
 
     return result[0]

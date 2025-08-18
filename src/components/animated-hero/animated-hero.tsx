@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { Button } from '../ui/button/button';
+import Image from 'next/image';
 
 export default function AnimatedHero() {
     const [showF, setShowF] = useState(false);
@@ -36,7 +37,7 @@ export default function AnimatedHero() {
                                     } bg-ff-mid-blue`}
                             >
                                 {/* Placeholder for your stylised F image - replace src with your actual image */}
-                                <img
+                                <Image
                                     src="forkflow-logo-right-aligned.png"
                                     alt="Stylised F"
                                     className="text-8xl font-bold text-white"
